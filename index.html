@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Kamera Sekar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2c3e50; /* Warna abu-abu gelap */
+            color: #ecf0f1; /* Warna putih */
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #ecf0f1; /* Warna putih */
+        }
+
+        #camera-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .camera-item {
+            background: #34495e; /* Warna abu-abu gelap */
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid #7f8c8d;
+            border-radius: 4px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .camera-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #34495e; /* Warna abu-abu gelap */
+            border: 1px solid #7f8c8d;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label, input, select {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            color: #ecf0f1; /* Warna putih */
+        }
+
+        input, select {
+            padding: 8px;
+            border: 1px solid #7f8c8d;
+            border-radius: 4px;
+            background: #2c3e50; /* Warna abu-abu gelap */
+            color: #ecf0f1; /* Warna putih */
+        }
+
+        input[type="submit"] {
+            background: #e74c3c; /* Warna merah */
+            border: none;
+            color: #ecf0f1; /* Warna putih */
+            cursor: pointer;
+            padding: 10px;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #c0392b; /* Warna merah gelap */
+        }
+    </style>
+</head>
+<body>
+    <h1>Rental Kamera Sekar</h1>
+    <div id="camera-list">
+        <!-- Daftar kamera akan ditampilkan di sini -->
+    </div>
+    <h2>Formulir Pemesanan</h2>
+    <form id="order-form" method="post" action="order.php">
+        <label for="camera">Pilih Kamera:</label>
+        <select name="camera" id="camera" required>
+            <!-- Opsi kamera akan diisi oleh JavaScript -->
+        </select>
+        <br>
+        <label for="duration">Durasi Sewa (hari):</label>
+        <input type="number" name="duration" id="duration" min="1" required>
+        <br>
+        <input type="submit" value="Pesan">
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cameraList = [
+                { name: 'Canon EOS 5D', price: 50000, image: 'canon.jpeg' },
+                { name: 'Nikon D850', price: 60000, image: 'nikon.jpeg' },
+                { name: 'Sony A7 III', price: 70000, image: 'sony.jpeg' }
+            ];
+
+            const cameraListDiv = document.getElementById('camera-list');
+            const cameraSelect = document.getElementById('camera');
+
+            cameraList.forEach(camera => {
+                const cameraDiv = document.createElement('div');
+                cameraDiv.className = 'camera-item';
+                cameraDiv.innerHTML = `<h3>${camera.name}</h3><p>Harga sewa per hari: Rp${camera.price}</p><img src="${camera.image}" alt="${camera.name}">`;
+                cameraListDiv.appendChild(cameraDiv);
+
+                const option = document.createElement('option');
+                option.value = camera.name;
+                option.text = camera.name;
+                cameraSelect.add(option);
+            });
+        });
+    </script>
+</body>
+</html>
